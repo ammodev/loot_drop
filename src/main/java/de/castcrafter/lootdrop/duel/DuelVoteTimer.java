@@ -18,130 +18,130 @@ import org.bukkit.scheduler.BukkitRunnable;
  */
 public class DuelVoteTimer extends BukkitRunnable implements Listener {
 
-	private final int[] plingSounds = new int[] {
-			120, 90, 60, 30, 10, 5, 4, 3, 2, 1
-	};
+  private final int[] plingSounds = new int[]{
+      120, 90, 60, 30, 10, 5, 4, 3, 2, 1
+  };
 
-	private final Duel duel;
-	private final int maxSeconds;
-	private int currentSeconds;
+  private final Duel duel;
+  private final int maxSeconds;
+  private int currentSeconds;
 
-	/**
-	 * Instantiates a new Duel vote timer.
-	 *
-	 * @param duel       the duel
-	 * @param maxSeconds the max seconds
-	 */
-	public DuelVoteTimer(Duel duel, int maxSeconds) {
-		this.duel = duel;
+  /**
+   * Instantiates a new Duel vote timer.
+   *
+   * @param duel       the duel
+   * @param maxSeconds the max seconds
+   */
+  public DuelVoteTimer(Duel duel, int maxSeconds) {
+    this.duel = duel;
 
-		this.currentSeconds = maxSeconds + 1;
-		this.maxSeconds = maxSeconds;
+    this.currentSeconds = maxSeconds + 1;
+    this.maxSeconds = maxSeconds;
 
-		Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
-	}
+    Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+  }
 
-	/**
-	 * Is running boolean.
-	 *
-	 * @return the boolean
-	 */
-	public boolean isRunning() {
-		return this.currentSeconds > 0;
-	}
+  /**
+   * Is running boolean.
+   *
+   * @return the boolean
+   */
+  public boolean isRunning() {
+    return this.currentSeconds > 0;
+  }
 
-	@Override
-	public void run() {
-		currentSeconds--;
+  @Override
+  public void run() {
+    currentSeconds--;
 
-		plingSound();
+    plingSound();
 
-		if (currentSeconds <= 0) {
-			duel.endVote();
-			stop();
-		}
-	}
+    if (currentSeconds <= 0) {
+      duel.endVote();
+      stop();
+    }
+  }
 
-	/**
-	 * Pling sound.
-	 */
-	private void plingSound() {
-		for (int plingSound : plingSounds) {
-			if (currentSeconds == plingSound) {
-				Bukkit.getOnlinePlayers().forEach(player -> {
-					SoundUtils.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, .5f, 1f);
-				});
-			}
-		}
-	}
+  /**
+   * Pling sound.
+   */
+  private void plingSound() {
+    for (int plingSound : plingSounds) {
+      if (currentSeconds == plingSound) {
+        Bukkit.getOnlinePlayers().forEach(player -> {
+          SoundUtils.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, .5f, 1f);
+        });
+      }
+    }
+  }
 
-	/**
-	 * Start.
-	 */
-	public void start() {
-		this.runTaskTimer(Main.getInstance(), 0, 20L);
+  /**
+   * Start.
+   */
+  public void start() {
+    this.runTaskTimer(Main.getInstance(), 0, 20L);
 
-		Hud hud = getHud();
+    Hud hud = getHud();
 
-		for (HudPlayer onlinePlayer :
-				Bukkit.getOnlinePlayers().stream().map(BetterHud.getInstance()::getHudPlayer).toList()) {
-			onlinePlayer.getHudObjects().add(hud);
-		}
-	}
+    for (HudPlayer onlinePlayer :
+        Bukkit.getOnlinePlayers().stream().map(BetterHud.getInstance()::getHudPlayer).toList()) {
+      onlinePlayer.getHudObjects().add(hud);
+    }
+  }
 
-	/**
-	 * On quit.
-	 *
-	 * @param event the event
-	 */
-	@EventHandler
-	public void onQuit(PlayerQuitEvent event) {
-		BetterHud.getInstance().getHudPlayer(event.getPlayer()).getHudObjects().remove(getHud());
-	}
+  /**
+   * On quit.
+   *
+   * @param event the event
+   */
+  @EventHandler
+  public void onQuit(PlayerQuitEvent event) {
+    BetterHud.getInstance().getHudPlayer(event.getPlayer()).getHudObjects().remove(getHud());
+  }
 
-	/**
-	 * Stop.
-	 */
-	public void stop() {
-		Hud hud = getHud();
+  /**
+   * Stop.
+   */
+  public void stop() {
+    Hud hud = getHud();
 
-		for (HudPlayer onlinePlayer :
-				Bukkit.getOnlinePlayers().stream().map(BetterHud.getInstance()::getHudPlayer).toList()) {
-			onlinePlayer.getHudObjects().remove(hud);
-		}
+    for (HudPlayer onlinePlayer :
+        Bukkit.getOnlinePlayers().stream().map(BetterHud.getInstance()::getHudPlayer).toList()) {
+      onlinePlayer.getHudObjects().remove(hud);
+    }
 
-		HandlerList.unregisterAll(this);
+    HandlerList.unregisterAll(this);
 
-		try {
-			this.cancel();
-		} catch (IllegalStateException ignore) {
-		}
-	}
+    try {
+      this.cancel();
+    } catch (IllegalStateException ignore) {
+    }
+  }
 
-	/**
-	 * Gets hud.
-	 *
-	 * @return the hud
-	 */
-	private Hud getHud() {
-		return BetterHud.getInstance().getHudManager().getHud("voting_hud");
-	}
+  /**
+   * Gets hud.
+   *
+   * @return the hud
+   */
+  private Hud getHud() {
+    return BetterHud.getInstance().getHudManager().getHud("voting_hud");
+  }
 
-	/**
-	 * Gets current seconds.
-	 *
-	 * @return the current seconds
-	 */
-	public int getCurrentSeconds() {
-		return currentSeconds;
-	}
+  /**
+   * Gets current seconds.
+   *
+   * @return the current seconds
+   */
+  public int getCurrentSeconds() {
+    return currentSeconds;
+  }
 
-	/**
-	 * Gets max seconds.
-	 *
-	 * @return the max seconds
-	 */
-	public int getMaxSeconds() {
-		return maxSeconds;
-	}
+  /**
+   * Gets max seconds.
+   *
+   * @return the max seconds
+   */
+  public int getMaxSeconds() {
+    return maxSeconds;
+  }
 }

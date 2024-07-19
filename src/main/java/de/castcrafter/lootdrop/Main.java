@@ -11,46 +11,46 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Main extends JavaPlugin {
 
-	private Loot_drop oldMain;
+  private Loot_drop oldMain;
 
-	private CommandManager commandManager;
-	private ListenerManager listenerManager;
+  private CommandManager commandManager;
+  private ListenerManager listenerManager;
 
-	/**
-	 * Gets instance.
-	 *
-	 * @return the instance
-	 */
-	public static Main getInstance() {
-		return getPlugin(Main.class);
-	}
+  /**
+   * Gets instance.
+   *
+   * @return the instance
+   */
+  public static Main getInstance() {
+    return getPlugin(Main.class);
+  }
 
-	@Override
-	public void onLoad() {
-		LootDropConfig.INSTANCE.loadConfig();
+  @Override
+  public void onLoad() {
+    LootDropConfig.INSTANCE.loadConfig();
 
-		commandManager = new CommandManager();
-		listenerManager = new ListenerManager();
+    commandManager = new CommandManager();
+    listenerManager = new ListenerManager();
 
-		oldMain = new Loot_drop(this);
-	}
+    oldMain = new Loot_drop(this);
+  }
 
-	@Override
-	public void onEnable() {
-		commandManager.registerCommands();
-		listenerManager.registerListeners();
+  @Override
+  public void onEnable() {
+    commandManager.registerCommands();
+    listenerManager.registerListeners();
 
-		oldMain.onEnable();
+    oldMain.onEnable();
 
-		LootDropConfig.INSTANCE.loadAndStartTimerIfExistsInConfig();
+    LootDropConfig.INSTANCE.loadAndStartTimerIfExistsInConfig();
 
-		new LootDropPlaceholderExpansion().register();
-	}
+    new LootDropPlaceholderExpansion().register();
+  }
 
-	@Override
-	public void onDisable() {
-		oldMain.onDisable();
-		commandManager.unregisterCommands();
-		listenerManager.unregisterListeners();
-	}
+  @Override
+  public void onDisable() {
+    oldMain.onDisable();
+    commandManager.unregisterCommands();
+    listenerManager.unregisterListeners();
+  }
 }

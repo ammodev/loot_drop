@@ -11,34 +11,34 @@ import org.bukkit.Location;
  */
 public class SubEventJoinCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Event join command.
-	 *
-	 * @param commandName  the command name
-	 * @param eventCommand the event command
-	 */
-	public SubEventJoinCommand(String commandName, SubEventCommand eventCommand) {
-		super(commandName);
+  /**
+   * Instantiates a new Event join command.
+   *
+   * @param commandName  the command name
+   * @param eventCommand the event command
+   */
+  public SubEventJoinCommand(String commandName, SubEventCommand eventCommand) {
+    super(commandName);
 
-		withPermission("lootdrop.command.subevent.join");
+    withPermission("lootdrop.command.subevent.join");
 
-		executesPlayer((player, args) -> {
-			Location eventLocation = eventCommand.getEventLocation();
-			boolean eventStarted = eventCommand.isEventStarted();
+    executesPlayer((player, args) -> {
+      Location eventLocation = eventCommand.getEventLocation();
+      boolean eventStarted = eventCommand.isEventStarted();
 
-			if (eventLocation == null) {
-				Chat.sendMessage(player, Messages.noEventStartedComponent());
-				return;
-			}
+      if (eventLocation == null) {
+        Chat.sendMessage(player, Messages.noEventStartedComponent());
+        return;
+      }
 
-			if (!eventStarted) {
-				Chat.sendMessage(player, Messages.noEventStartedComponent());
-				return;
-			}
+      if (!eventStarted) {
+        Chat.sendMessage(player, Messages.noEventStartedComponent());
+        return;
+      }
 
-			player.teleportAsync(eventLocation).thenAcceptAsync(v -> {
-				Chat.sendMessage(player, Messages.youHaveBeenTeleportedToEventLocationComponent());
-			});
-		});
-	}
+      player.teleportAsync(eventLocation).thenAcceptAsync(v -> {
+        Chat.sendMessage(player, Messages.youHaveBeenTeleportedToEventLocationComponent());
+      });
+    });
+  }
 }

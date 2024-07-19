@@ -14,39 +14,39 @@ import org.bukkit.event.player.PlayerMoveEvent;
  */
 public class SeamineListener implements Listener {
 
-	/**
-	 * On player approach mine.
-	 *
-	 * @param event the event
-	 */
-	@EventHandler
-	public void onPlayerApproachMine(PlayerMoveEvent event) {
-		if (!event.hasChangedBlock()) {
-			return;
-		}
+  /**
+   * On player approach mine.
+   *
+   * @param event the event
+   */
+  @EventHandler
+  public void onPlayerApproachMine(PlayerMoveEvent event) {
+    if (!event.hasChangedBlock()) {
+      return;
+    }
 
-		Player player = event.getPlayer();
-		if (player.getGameMode() == GameMode.SURVIVAL) {
-			double range = 5.0; // Set the range
+    Player player = event.getPlayer();
+    if (player.getGameMode() == GameMode.SURVIVAL) {
+      double range = 5.0; // Set the range
 
-			for (Entity entity : player.getNearbyEntities(range, range, range)) {
-				if (entity instanceof ArmorStand armorStand) {
-					if (armorStand.getScoreboardTags().contains("seamine")) {
-						armorStand.getWorld().spawn(armorStand.getLocation(), TNTPrimed.class).setFuseTicks(1);
-						armorStand.getNearbyEntities(5, 5, 5).forEach(nearby -> {
-							if (!( nearby instanceof Player nearbyPlayer )) {
-								return;
-							}
+      for (Entity entity : player.getNearbyEntities(range, range, range)) {
+        if (entity instanceof ArmorStand armorStand) {
+          if (armorStand.getScoreboardTags().contains("seamine")) {
+            armorStand.getWorld().spawn(armorStand.getLocation(), TNTPrimed.class).setFuseTicks(1);
+            armorStand.getNearbyEntities(5, 5, 5).forEach(nearby -> {
+              if (!(nearby instanceof Player nearbyPlayer)) {
+                return;
+              }
 
-							nearbyPlayer.damage(8);
-						});
+              nearbyPlayer.damage(8);
+            });
 
-						armorStand.remove();
+            armorStand.remove();
 
-						break;
-					}
-				}
-			}
-		}
-	}
+            break;
+          }
+        }
+      }
+    }
+  }
 }

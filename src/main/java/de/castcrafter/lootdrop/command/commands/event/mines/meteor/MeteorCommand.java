@@ -12,26 +12,26 @@ import net.kyori.adventure.text.format.NamedTextColor;
  */
 public class MeteorCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Meteor command.
-	 *
-	 * @param commandName the command name
-	 */
-	public MeteorCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Meteor command.
+   *
+   * @param commandName the command name
+   */
+  public MeteorCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.mines.meteor");
+    withPermission("lootdrop.command.mines.meteor");
 
-		withOptionalArguments(new BooleanArgument("swirl"));
+    withOptionalArguments(new BooleanArgument("swirl"));
 
-		executesPlayer((player, args) -> {
-			boolean swirl = args.getOrDefaultUnchecked("swirl", false);
+    executesPlayer((player, args) -> {
+      boolean swirl = args.getOrDefaultUnchecked("swirl", false);
 
-			Meteor meteor = new Meteor(player.getLocation(), swirl, false);
-			meteor.spawnHolder();
-			meteor.register();
+      Meteor meteor = new Meteor(player.getLocation(), swirl, false);
+      meteor.spawnHolder();
+      meteor.register();
 
-			Chat.sendMessage(player, Component.text("Meteor spawned!", NamedTextColor.GREEN));
-		});
-	}
+      Chat.sendMessage(player, Component.text("Meteor spawned!", NamedTextColor.GREEN));
+    });
+  }
 }

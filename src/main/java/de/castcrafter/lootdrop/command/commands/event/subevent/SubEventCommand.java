@@ -12,60 +12,60 @@ import org.bukkit.Location;
  */
 public class SubEventCommand extends CommandAPICommand {
 
-	public static final SubEventCommand INSTANCE = new SubEventCommand("subevent");
+  public static final SubEventCommand INSTANCE = new SubEventCommand("subevent");
 
-	private boolean eventStarted;
-	private Location eventLocation;
+  private boolean eventStarted;
+  private Location eventLocation;
 
-	/**
-	 * Instantiates a new Sub event command.
-	 *
-	 * @param commandName the command name
-	 */
-	public SubEventCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Sub event command.
+   *
+   * @param commandName the command name
+   */
+  public SubEventCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.subevent");
+    withPermission("lootdrop.command.subevent");
 
-		withSubcommand(new SubEventStartCommand("start", this));
-		withSubcommand(new SubEventStopCommand("stop", this));
-		withSubcommand(new SubEventCreateCommand("create", this));
-		withSubcommand(new SubEventJoinCommand("join", this));
-	}
+    withSubcommand(new SubEventStartCommand("start", this));
+    withSubcommand(new SubEventStopCommand("stop", this));
+    withSubcommand(new SubEventCreateCommand("create", this));
+    withSubcommand(new SubEventJoinCommand("join", this));
+  }
 
-	/**
-	 * Gets event location.
-	 *
-	 * @return the event location
-	 */
-	public Location getEventLocation() {
-		return eventLocation;
-	}
+  /**
+   * Gets event location.
+   *
+   * @return the event location
+   */
+  public Location getEventLocation() {
+    return eventLocation;
+  }
 
-	/**
-	 * Is event started boolean.
-	 *
-	 * @return the boolean
-	 */
-	public boolean isEventStarted() {
-		return eventStarted;
-	}
+  /**
+   * Is event started boolean.
+   *
+   * @return the boolean
+   */
+  public boolean isEventStarted() {
+    return eventStarted;
+  }
 
-	/**
-	 * Sets event location.
-	 *
-	 * @param eventLocation the event location
-	 */
-	public void setEventLocation(Location eventLocation) {
-		this.eventLocation = eventLocation;
-	}
+  /**
+   * Sets event location.
+   *
+   * @param eventLocation the event location
+   */
+  public void setEventLocation(Location eventLocation) {
+    this.eventLocation = eventLocation;
+  }
 
-	/**
-	 * Sets event started.
-	 *
-	 * @param eventStarted the event started
-	 */
-	public void setEventStarted(boolean eventStarted) {
-		this.eventStarted = eventStarted;
-	}
+  /**
+   * Sets event started.
+   *
+   * @param eventStarted the event started
+   */
+  public void setEventStarted(boolean eventStarted) {
+    this.eventStarted = eventStarted;
+  }
 }

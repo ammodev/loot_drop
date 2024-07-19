@@ -5,31 +5,31 @@ package de.castcrafter.lootdrop.duel;
  */
 public class DuelManager {
 
-	public static final DuelManager INSTANCE = new DuelManager();
+  public static final DuelManager INSTANCE = new DuelManager();
 
-	private Duel runningDuel;
+  private Duel runningDuel;
 
-	/**
-	 * Instantiates a new Duel manager.
-	 */
-	private DuelManager() {
-	}
+  /**
+   * Instantiates a new Duel manager.
+   */
+  private DuelManager() {
+  }
 
-	/**
-	 * Gets running duel.
-	 *
-	 * @return the running duel
-	 */
-	public Duel getRunningDuel() {
-		return runningDuel;
-	}
+  /**
+   * Gets running duel.
+   *
+   * @return the running duel
+   */
+  public Duel getRunningDuel() {
+    return runningDuel;
+  }
 
-	/**
-	 * Sets running duel.
-	 *
-	 * @param runningDuel the running duel
-	 */
-	public void setRunningDuel(Duel runningDuel) {
-		this.runningDuel = runningDuel;
-	}
+  /**
+   * Sets running duel.
+   *
+   * @param runningDuel the running duel
+   */
+  public void setRunningDuel(Duel runningDuel) {
+    this.runningDuel = runningDuel;
+  }
 }

@@ -11,15 +11,15 @@ import org.bukkit.event.world.WorldSaveEvent;
  */
 public class ConfigSaveListener implements Listener {
 
-	/**
-	 * On world save.
-	 *
-	 * @param event the event
-	 */
-	@EventHandler
-	public void onWorldSave(WorldSaveEvent event) {
-		if (event.getWorld().getEnvironment().equals(World.Environment.NORMAL)) {
-			LootDropConfig.INSTANCE.saveConfig();
-		}
-	}
+  /**
+   * On world save.
+   *
+   * @param event the event
+   */
+  @EventHandler
+  public void onWorldSave(WorldSaveEvent event) {
+    if (event.getWorld().getEnvironment().equals(World.Environment.NORMAL)) {
+      LootDropConfig.INSTANCE.saveConfig();
+    }
+  }
 }

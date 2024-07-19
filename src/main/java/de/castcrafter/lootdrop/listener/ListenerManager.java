@@ -14,23 +14,23 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class ListenerManager {
 
-	/**
-	 * Register listeners.
-	 */
-	public void registerListeners() {
-		JavaPlugin plugin = Main.getInstance();
-		PluginManager pluginManager = Bukkit.getPluginManager();
+  /**
+   * Register listeners.
+   */
+  public void registerListeners() {
+    JavaPlugin plugin = Main.getInstance();
+    PluginManager pluginManager = Bukkit.getPluginManager();
 
-		pluginManager.registerEvents(new SeamineListener(), plugin);
-		pluginManager.registerEvents(new SpecialItemListener(), plugin);
-		pluginManager.registerEvents(new ConfigSaveListener(), plugin);
-	}
+    pluginManager.registerEvents(new SeamineListener(), plugin);
+    pluginManager.registerEvents(new SpecialItemListener(), plugin);
+    pluginManager.registerEvents(new ConfigSaveListener(), plugin);
+  }
 
-	/**
-	 * Unregister listeners.
-	 */
-	public void unregisterListeners() {
-		HandlerList.unregisterAll(Main.getInstance());
-	}
+  /**
+   * Unregister listeners.
+   */
+  public void unregisterListeners() {
+    HandlerList.unregisterAll(Main.getInstance());
+  }
 
 }

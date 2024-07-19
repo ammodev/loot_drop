@@ -9,17 +9,17 @@ import dev.jorel.commandapi.CommandAPICommand;
  */
 public class MinesCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Mines command.
-	 *
-	 * @param commandName the command name
-	 */
-	public MinesCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Mines command.
+   *
+   * @param commandName the command name
+   */
+  public MinesCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.mines");
+    withPermission("lootdrop.command.mines");
 
-		withSubcommand(new SeamineCommand("seamine"));
-		withSubcommand(new MeteorCommand("meteor"));
-	}
+    withSubcommand(new SeamineCommand("seamine"));
+    withSubcommand(new MeteorCommand("meteor"));
+  }
 }

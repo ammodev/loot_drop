@@ -11,19 +11,19 @@ import dev.jorel.commandapi.CommandAPICommand;
  */
 public class DuelCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Duel command.
-	 *
-	 * @param commandName the command name
-	 */
-	public DuelCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Duel command.
+   *
+   * @param commandName the command name
+   */
+  public DuelCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.duel");
+    withPermission("lootdrop.command.duel");
 
-		withSubcommand(new DuelCreateCommand("create"));
-		withSubcommand(new DuelStopCommand("force-stop"));
-		withSubcommand(new DuelResultCommand("result"));
-		withSubcommand(new DuelVoteCommand("vote"));
-	}
+    withSubcommand(new DuelCreateCommand("create"));
+    withSubcommand(new DuelStopCommand("force-stop"));
+    withSubcommand(new DuelResultCommand("result"));
+    withSubcommand(new DuelVoteCommand("vote"));
+  }
 }

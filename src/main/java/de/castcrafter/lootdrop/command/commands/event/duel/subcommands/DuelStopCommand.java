@@ -12,26 +12,26 @@ import net.kyori.adventure.text.format.NamedTextColor;
  */
 public class DuelStopCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Duel stop command.
-	 *
-	 * @param commandName the command name
-	 */
-	public DuelStopCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Duel stop command.
+   *
+   * @param commandName the command name
+   */
+  public DuelStopCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.duel.stop");
+    withPermission("lootdrop.command.duel.stop");
 
-		executesPlayer((player, args) -> {
-			if (DuelManager.INSTANCE.getRunningDuel() == null) {
-				Chat.sendMessage(player, Component.text(
-						"Aktuell läuft kein Duell, welches du beenden könntest!", NamedTextColor.RED
-				));
+    executesPlayer((player, args) -> {
+      if (DuelManager.INSTANCE.getRunningDuel() == null) {
+        Chat.sendMessage(player, Component.text(
+            "Aktuell läuft kein Duell, welches du beenden könntest!", NamedTextColor.RED
+        ));
 
-				return;
-			}
+        return;
+      }
 
-			DuelManager.INSTANCE.getRunningDuel().finishDuel(DuelFinishState.FORCE_STOP);
-		});
-	}
+      DuelManager.INSTANCE.getRunningDuel().finishDuel(DuelFinishState.FORCE_STOP);
+    });
+  }
 }

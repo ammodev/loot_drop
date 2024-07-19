@@ -10,21 +10,21 @@ import dev.jorel.commandapi.CommandAPICommand;
  */
 public class SubEventCreateCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Event create sub command.
-	 *
-	 * @param commandName  the command name
-	 * @param eventCommand the event command
-	 */
-	public SubEventCreateCommand(String commandName, final SubEventCommand eventCommand) {
-		super(commandName);
+  /**
+   * Instantiates a new Event create sub command.
+   *
+   * @param commandName  the command name
+   * @param eventCommand the event command
+   */
+  public SubEventCreateCommand(String commandName, final SubEventCommand eventCommand) {
+    super(commandName);
 
-		withPermission("lootdrop.command.subevent.create");
+    withPermission("lootdrop.command.subevent.create");
 
-		executesPlayer((player, args) -> {
-			eventCommand.setEventLocation(player.getLocation());
+    executesPlayer((player, args) -> {
+      eventCommand.setEventLocation(player.getLocation());
 
-			Chat.sendMessage(player, Messages.eventHasBeenCreatedComponent());
-		});
-	}
+      Chat.sendMessage(player, Messages.eventHasBeenCreatedComponent());
+    });
+  }
 }

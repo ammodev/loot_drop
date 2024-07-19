@@ -10,19 +10,19 @@ import org.bukkit.entity.TNTPrimed;
  */
 public class TntLootAction extends LootAction {
 
-	public static final TntLootAction INSTANCE = new TntLootAction();
+  public static final TntLootAction INSTANCE = new TntLootAction();
 
-	/**
-	 * Instantiates a new Tnt loot action.
-	 */
-	public TntLootAction() {
-		super(Material.TNT);
-	}
+  /**
+   * Instantiates a new Tnt loot action.
+   */
+  public TntLootAction() {
+    super(Material.TNT);
+  }
 
-	@Override
-	public void performAction(Location initialLocation, Location targetLocation) {
-		targetLocation.getWorld().spawn(targetLocation, TNTPrimed.class, tntPrimed -> {
-			tntPrimed.setFuseTicks(0);
-		});
-	}
+  @Override
+  public void performAction(Location initialLocation, Location targetLocation) {
+    targetLocation.getWorld().spawn(targetLocation, TNTPrimed.class, tntPrimed -> {
+      tntPrimed.setFuseTicks(0);
+    });
+  }
 }
