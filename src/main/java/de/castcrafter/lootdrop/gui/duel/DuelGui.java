@@ -5,7 +5,7 @@ import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.duel.Duel;
 import de.castcrafter.lootdrop.duel.DuelVoteState;
 import de.castcrafter.lootdrop.gui.button.PlayerHeadButton;
@@ -163,7 +163,7 @@ public class DuelGui extends ChestGui {
       public void run() {
         player.closeInventory(InventoryCloseEvent.Reason.PLUGIN);
       }
-    }.runTaskLater(Main.getInstance(), 1);
+    }.runTaskLater(BukkitMain.getInstance(), 1);
   }
 
 }

@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.meteor;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import io.th0rgal.oraxen.api.OraxenItems;
 import java.util.UUID;
 import net.kyori.adventure.sound.Sound;
@@ -112,7 +112,7 @@ public class Meteor implements Listener {
       }
     };
 
-    this.runnable.runTaskTimer(Main.getInstance(), 0, 1L);
+    this.runnable.runTaskTimer(BukkitMain.getInstance(), 0, 1L);
   }
 
   /**
@@ -131,7 +131,7 @@ public class Meteor implements Listener {
     MeteorRegistry.INSTANCE.addMeteor(this);
     createRunnable();
 
-    Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+    Bukkit.getPluginManager().registerEvents(this, BukkitMain.getInstance());
   }
 
   /**

@@ -37,12 +37,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-public class Loot_drop implements Listener, CommandExecutor {
+public class LootDrop implements Listener, CommandExecutor {
 
-  private final Main plugin;
+  public static final LootDrop INSTANCE = new LootDrop();
 
-  public Loot_drop(Main plugin) {
-    this.plugin = plugin;
+  private LootDrop() {
   }
 
   private final List<ItemStack> goodLootContents = new ArrayList<>();
@@ -54,9 +53,12 @@ public class Loot_drop implements Listener, CommandExecutor {
   private UUID lootArmorStandUUID;
 
   public void onEnable() {
+    final BukkitMain plugin = BukkitMain.getInstance();
+
     Objects.requireNonNull(plugin.getCommand("copyloot")).setExecutor(this);
     Objects.requireNonNull(plugin.getCommand("summonloot")).setExecutor(this);
-    plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
+    Bukkit.getPluginManager().registerEvents(this, plugin);
   }
 
   public void onDisable() {
@@ -263,7 +265,7 @@ public class Loot_drop implements Listener, CommandExecutor {
     lootArmorStand.setDisabledSlots(HEAD, CHEST, FEET, HAND, OFF_HAND, LEGS);
     lootArmorStand.getEquipment().setHelmet(heartOfTheSea);
 
-    particleTaskId = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+    particleTaskId = Bukkit.getScheduler().runTaskTimer(BukkitMain.getInstance(), () -> {
       lootArmorStand.setVelocity(new Vector(0, -0.03, 0));
       lootArmorStand.getWorld()
           .spawnParticle(Particle.CAMPFIRE_SIGNAL_SMOKE, lootArmorStand.getLocation().add(0, 6, 0),

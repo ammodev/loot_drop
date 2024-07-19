@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.duel;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.gui.duel.DuelGui;
 import de.castcrafter.lootdrop.utils.Chat;
 import de.castcrafter.lootdrop.utils.SoundUtils;
@@ -75,7 +75,7 @@ public class Duel {
           DuelGui.closeInventory(onlinePlayer, false);
         });
       }
-    }.runTaskLater(Main.getInstance(), 1L);
+    }.runTaskLater(BukkitMain.getInstance(), 1L);
   }
 
   /**
@@ -186,7 +186,7 @@ public class Duel {
         Bukkit.getOnlinePlayers()
             .forEach(onlinePlayer -> DuelGui.closeInventory(onlinePlayer, false));
       }
-    }.runTaskLater(Main.getInstance(), 1L);
+    }.runTaskLater(BukkitMain.getInstance(), 1L);
 
     Bukkit.getOnlinePlayers().forEach(onlinePlayer -> {
       SoundUtils.playSound(onlinePlayer, Sound.ENTITY_ENDER_DRAGON_GROWL, .5f, .75f);
@@ -205,7 +205,7 @@ public class Duel {
 
         DuelManager.INSTANCE.setRunningDuel(null);
       }
-    }.runTaskLater(Main.getInstance(), 20 * 4);
+    }.runTaskLater(BukkitMain.getInstance(), 20 * 4);
   }
 
   /**

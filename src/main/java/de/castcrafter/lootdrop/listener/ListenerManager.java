@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.listener;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.listener.listeners.ConfigSaveListener;
 import de.castcrafter.lootdrop.listener.listeners.SeamineListener;
 import de.castcrafter.lootdrop.listener.listeners.SpecialItemListener;
@@ -18,7 +18,7 @@ public class ListenerManager {
    * Register listeners.
    */
   public void registerListeners() {
-    JavaPlugin plugin = Main.getInstance();
+    JavaPlugin plugin = BukkitMain.getInstance();
     PluginManager pluginManager = Bukkit.getPluginManager();
 
     pluginManager.registerEvents(new SeamineListener(), plugin);
@@ -30,7 +30,7 @@ public class ListenerManager {
    * Unregister listeners.
    */
   public void unregisterListeners() {
-    HandlerList.unregisterAll(Main.getInstance());
+    HandlerList.unregisterAll(BukkitMain.getInstance());
   }
 
 }

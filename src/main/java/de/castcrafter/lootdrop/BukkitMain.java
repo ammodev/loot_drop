@@ -7,11 +7,9 @@ import de.castcrafter.lootdrop.placeholder.LootDropPlaceholderExpansion;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * The type Main.
+ * The type BukkitMain.
  */
-public class Main extends JavaPlugin {
-
-  private Loot_drop oldMain;
+public class BukkitMain extends JavaPlugin {
 
   private CommandManager commandManager;
   private ListenerManager listenerManager;
@@ -21,8 +19,8 @@ public class Main extends JavaPlugin {
    *
    * @return the instance
    */
-  public static Main getInstance() {
-    return getPlugin(Main.class);
+  public static BukkitMain getInstance() {
+    return getPlugin(BukkitMain.class);
   }
 
   @Override
@@ -31,8 +29,6 @@ public class Main extends JavaPlugin {
 
     commandManager = new CommandManager();
     listenerManager = new ListenerManager();
-
-    oldMain = new Loot_drop(this);
   }
 
   @Override
@@ -40,7 +36,7 @@ public class Main extends JavaPlugin {
     commandManager.registerCommands();
     listenerManager.registerListeners();
 
-    oldMain.onEnable();
+    LootDrop.INSTANCE.onEnable();
 
     LootDropConfig.INSTANCE.loadAndStartTimerIfExistsInConfig();
 
@@ -49,7 +45,7 @@ public class Main extends JavaPlugin {
 
   @Override
   public void onDisable() {
-    oldMain.onDisable();
+    LootDrop.INSTANCE.onDisable();
     commandManager.unregisterCommands();
     listenerManager.unregisterListeners();
   }

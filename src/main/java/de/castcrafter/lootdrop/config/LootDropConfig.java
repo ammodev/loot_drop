@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.config;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.config.drops.HourlyDrop;
 import de.castcrafter.lootdrop.timer.LootDropTimer;
 import java.time.Duration;
@@ -56,7 +56,7 @@ public class LootDropConfig {
    */
   public void loadConfig() {
     loader = YamlConfigurationLoader.builder()
-        .path(Main.getInstance().getDataFolder().toPath().resolve("config.yml"))
+        .path(BukkitMain.getInstance().getDataFolder().toPath().resolve("config.yml"))
         .build();
     try {
       node = loader.load();

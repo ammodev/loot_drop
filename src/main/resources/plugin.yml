@@ -1,6 +1,6 @@
 name: loot_drop
 version: '${project.version}'
-main: de.castcrafter.lootdrop.Main
+main: de.castcrafter.lootdrop.BukkitMain
 api-version: '1.20'
 depend:
   - CommandAPI

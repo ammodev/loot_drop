@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.duel;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.utils.SoundUtils;
 import kr.toxicity.hud.api.BetterHud;
 import kr.toxicity.hud.api.hud.Hud;
@@ -38,7 +38,7 @@ public class DuelVoteTimer extends BukkitRunnable implements Listener {
     this.currentSeconds = maxSeconds + 1;
     this.maxSeconds = maxSeconds;
 
-    Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+    Bukkit.getPluginManager().registerEvents(this, BukkitMain.getInstance());
   }
 
   /**
@@ -79,7 +79,7 @@ public class DuelVoteTimer extends BukkitRunnable implements Listener {
    * Start.
    */
   public void start() {
-    this.runTaskTimer(Main.getInstance(), 0, 20L);
+    this.runTaskTimer(BukkitMain.getInstance(), 0, 20L);
 
     Hud hud = getHud();
 

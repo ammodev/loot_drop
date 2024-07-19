@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.timer;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.config.LootDropConfig;
 import de.castcrafter.lootdrop.utils.Chat;
 import de.castcrafter.lootdrop.utils.SoundUtils;
@@ -97,7 +97,7 @@ public class LootDropTimer extends BukkitRunnable {
       return;
     }
 
-    this.runTaskTimer(Main.getInstance(), 0, 20L);
+    this.runTaskTimer(BukkitMain.getInstance(), 0, 20L);
   }
 
   /**

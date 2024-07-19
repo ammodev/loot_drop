@@ -1,6 +1,6 @@
 package de.castcrafter.lootdrop.meteor;
 
-import de.castcrafter.lootdrop.Main;
+import de.castcrafter.lootdrop.BukkitMain;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
@@ -24,7 +24,7 @@ public class MeteorRegistry implements Listener {
    * Instantiates a new Meteor registry.
    */
   public MeteorRegistry() {
-    Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+    Bukkit.getPluginManager().registerEvents(this, BukkitMain.getInstance());
 
     this.meteors = new ArrayList<>();
   }
