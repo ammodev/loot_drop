@@ -13,38 +13,38 @@ import net.kyori.adventure.text.format.NamedTextColor;
  */
 public class DuelVoteCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Duel vote command.
-	 *
-	 * @param commandName the command name
-	 */
-	public DuelVoteCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Duel vote command.
+   *
+   * @param commandName the command name
+   */
+  public DuelVoteCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.duel.vote");
+    withPermission("lootdrop.command.duel.vote");
 
-		executesPlayer((player, args) -> {
-			Duel duel = DuelManager.INSTANCE.getRunningDuel();
+    executesPlayer((player, args) -> {
+      Duel duel = DuelManager.INSTANCE.getRunningDuel();
 
-			if (duel == null) {
-				Chat.sendMessage(player, Component.text(
-						"Es läuft aktuell kein Duell, für das du abstimmen kannst!",
-						NamedTextColor.RED
-				));
+      if (duel == null) {
+        Chat.sendMessage(player, Component.text(
+            "Es läuft aktuell kein Duell, für das du abstimmen kannst!",
+            NamedTextColor.RED
+        ));
 
-				return;
-			}
+        return;
+      }
 
-			if (!duel.isVoteOpen()) {
-				Chat.sendMessage(player, Component.text(
-						"Die Abstimmung für dieses Duell ist bereits beendet!",
-						NamedTextColor.RED
-				));
+      if (!duel.isVoteOpen()) {
+        Chat.sendMessage(player, Component.text(
+            "Die Abstimmung für dieses Duell ist bereits beendet!",
+            NamedTextColor.RED
+        ));
 
-				return;
-			}
+        return;
+      }
 
-			new DuelGui(duel).show(player);
-		});
-	}
+      new DuelGui(duel).show(player);
+    });
+  }
 }

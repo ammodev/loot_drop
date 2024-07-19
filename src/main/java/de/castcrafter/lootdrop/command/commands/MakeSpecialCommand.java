@@ -14,37 +14,37 @@ import org.bukkit.persistence.PersistentDataType;
  */
 public class MakeSpecialCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Make special command.
-	 *
-	 * @param commandName the command name
-	 */
-	public MakeSpecialCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Make special command.
+   *
+   * @param commandName the command name
+   */
+  public MakeSpecialCommand(String commandName) {
+    super(commandName);
 
-		withPermission("castcrafter.lootdrop.specialitem");
+    withPermission("castcrafter.lootdrop.specialitem");
 
-		executesPlayer((player, args) -> {
-			ItemStack mainHand = player.getInventory().getItemInMainHand();
+    executesPlayer((player, args) -> {
+      ItemStack mainHand = player.getInventory().getItemInMainHand();
 
-			if (mainHand.getType().equals(Material.AIR)) {
-				Chat.sendMessage(player, Messages.youNeedAnItemInYourHandComponent());
-				return;
-			}
+      if (mainHand.getType().equals(Material.AIR)) {
+        Chat.sendMessage(player, Messages.youNeedAnItemInYourHandComponent());
+        return;
+      }
 
-			ItemMeta itemMeta = mainHand.getItemMeta();
+      ItemMeta itemMeta = mainHand.getItemMeta();
 
-			if (itemMeta == null) {
-				Chat.sendMessage(player, Messages.itemHasNoMetaComponent());
-				return;
-			}
+      if (itemMeta == null) {
+        Chat.sendMessage(player, Messages.itemHasNoMetaComponent());
+        return;
+      }
 
-			itemMeta.getPersistentDataContainer()
-					.set(SpecialItemListener.SPECIAL_KEY, PersistentDataType.BYTE, (byte) 1);
+      itemMeta.getPersistentDataContainer()
+          .set(SpecialItemListener.SPECIAL_KEY, PersistentDataType.BYTE, (byte) 1);
 
-			mainHand.setItemMeta(itemMeta);
+      mainHand.setItemMeta(itemMeta);
 
-			Chat.sendMessage(player, Messages.itemIsNowSpecialComponent());
-		});
-	}
+      Chat.sendMessage(player, Messages.itemIsNowSpecialComponent());
+    });
+  }
 }

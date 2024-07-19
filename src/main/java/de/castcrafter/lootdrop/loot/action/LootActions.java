@@ -7,25 +7,25 @@ import de.castcrafter.lootdrop.loot.action.actions.TntLootAction;
  */
 public enum LootActions {
 
-	TNT(TntLootAction.INSTANCE);
+  TNT(TntLootAction.INSTANCE);
 
-	private final LootAction action;
+  private final LootAction action;
 
-	/**
-	 * Instantiates a new Loot actions.
-	 *
-	 * @param action the action
-	 */
-	LootActions(LootAction action) {
-		this.action = action;
-	}
+  /**
+   * Instantiates a new Loot actions.
+   *
+   * @param action the action
+   */
+  LootActions(LootAction action) {
+    this.action = action;
+  }
 
-	/**
-	 * Gets action.
-	 *
-	 * @return the action
-	 */
-	public LootAction getAction() {
-		return action;
-	}
+  /**
+   * Gets action.
+   *
+   * @return the action
+   */
+  public LootAction getAction() {
+    return action;
+  }
 }

@@ -12,26 +12,27 @@ import net.kyori.adventure.text.format.NamedTextColor;
  */
 public class TimerCancelCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Loot drop cancel timer command.
-	 *
-	 * @param commandName the command name
-	 */
-	public TimerCancelCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Loot drop cancel timer command.
+   *
+   * @param commandName the command name
+   */
+  public TimerCancelCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.timer.cancel");
+    withPermission("lootdrop.command.timer.cancel");
 
-		executesPlayer((player, args) -> {
-			LootDropTimer timer = LootDropConfig.INSTANCE.getTimer();
+    executesPlayer((player, args) -> {
+      LootDropTimer timer = LootDropConfig.INSTANCE.getTimer();
 
-			if (timer == null || !timer.isRunning()) {
-				Chat.sendMessage(player, Component.text("Es läuft kein Timer!", NamedTextColor.RED));
-				return;
-			}
+      if (timer == null || !timer.isRunning()) {
+        Chat.sendMessage(player, Component.text("Es läuft kein Timer!", NamedTextColor.RED));
+        return;
+      }
 
-			timer.stop();
-			Chat.sendMessage(player, Component.text("Der Timer wurde abgebrochen!", NamedTextColor.GREEN));
-		});
-	}
+      timer.stop();
+      Chat.sendMessage(player,
+          Component.text("Der Timer wurde abgebrochen!", NamedTextColor.GREEN));
+    });
+  }
 }

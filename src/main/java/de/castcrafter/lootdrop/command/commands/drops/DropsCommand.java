@@ -9,20 +9,20 @@ import dev.jorel.commandapi.CommandAPICommand;
  */
 public class DropsCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Drops command.
-	 *
-	 * @param commandName the command name
-	 */
-	public DropsCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Drops command.
+   *
+   * @param commandName the command name
+   */
+  public DropsCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.drops");
+    withPermission("lootdrop.command.drops");
 
-		withSubcommand(new DropResetCommand("reset"));
+    withSubcommand(new DropResetCommand("reset"));
 
-		executesPlayer((player, args) -> {
-			new DropsGui(player).show(player);
-		});
-	}
+    executesPlayer((player, args) -> {
+      new DropsGui(player).show(player);
+    });
+  }
 }

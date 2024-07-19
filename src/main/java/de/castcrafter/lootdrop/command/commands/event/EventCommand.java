@@ -12,20 +12,20 @@ import dev.jorel.commandapi.CommandAPICommand;
  */
 public class EventCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Event command.
-	 *
-	 * @param commandName the command name
-	 */
-	public EventCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Event command.
+   *
+   * @param commandName the command name
+   */
+  public EventCommand(String commandName) {
+    super(commandName);
 
-		withPermission("castcrafter.event");
+    withPermission("castcrafter.event");
 
-		withSubcommand(new TimerCommand("timer"));
-		withSubcommand(new MinesCommand("mines"));
-		withSubcommand(new SubEventCommand("sub-event"));
-		withSubcommand(new DuelCommand("duel"));
-		withSubcommand(new ConfigCommand("config"));
-	}
+    withSubcommand(new TimerCommand("timer"));
+    withSubcommand(new MinesCommand("mines"));
+    withSubcommand(new SubEventCommand("sub-event"));
+    withSubcommand(new DuelCommand("duel"));
+    withSubcommand(new ConfigCommand("config"));
+  }
 }

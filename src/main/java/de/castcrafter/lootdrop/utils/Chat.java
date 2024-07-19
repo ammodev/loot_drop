@@ -9,24 +9,25 @@ import org.bukkit.command.CommandSender;
  */
 public class Chat {
 
-	/**
-	 * Prefix component.
-	 *
-	 * @return the component
-	 */
-	public static Component prefix() {
-		return Component.text(">> ", NamedTextColor.DARK_GRAY).append(Component.text("Event", NamedTextColor.GOLD))
-						.append(Component.text(" | ", NamedTextColor.DARK_GRAY));
-	}
+  /**
+   * Prefix component.
+   *
+   * @return the component
+   */
+  public static Component prefix() {
+    return Component.text(">> ", NamedTextColor.DARK_GRAY)
+        .append(Component.text("Event", NamedTextColor.GOLD))
+        .append(Component.text(" | ", NamedTextColor.DARK_GRAY));
+  }
 
-	/**
-	 * Send message.
-	 *
-	 * @param sender  the sender
-	 * @param message the message
-	 */
-	public static void sendMessage(CommandSender sender, Component message) {
-		sender.sendMessage(prefix().append(message));
-	}
+  /**
+   * Send message.
+   *
+   * @param sender  the sender
+   * @param message the message
+   */
+  public static void sendMessage(CommandSender sender, Component message) {
+    sender.sendMessage(prefix().append(message));
+  }
 
 }

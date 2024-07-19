@@ -21,77 +21,77 @@ import org.bukkit.inventory.meta.ItemMeta;
  */
 public class DropGui extends ChestGui {
 
-	private final DropsGui dropsGui;
-	private final HumanEntity openedForPlayer;
-	private final HourlyDrop hourlyDrop;
+  private final DropsGui dropsGui;
+  private final HumanEntity openedForPlayer;
+  private final HourlyDrop hourlyDrop;
 
-	/**
-	 * Instantiates a new Drop gui.
-	 *
-	 * @param dropsGui        the drops gui
-	 * @param openedForPlayer the opened for player
-	 * @param hourlyDrop      the hourly drop
-	 */
-	public DropGui(DropsGui dropsGui, HumanEntity openedForPlayer, HourlyDrop hourlyDrop) {
-		super(6, "<shift:-8><glyph:daily_rewards_ui>");
+  /**
+   * Instantiates a new Drop gui.
+   *
+   * @param dropsGui        the drops gui
+   * @param openedForPlayer the opened for player
+   * @param hourlyDrop      the hourly drop
+   */
+  public DropGui(DropsGui dropsGui, HumanEntity openedForPlayer, HourlyDrop hourlyDrop) {
+    super(6, "<shift:-8><glyph:daily_rewards_ui>");
 
-		this.dropsGui = dropsGui;
-		this.openedForPlayer = openedForPlayer;
-		this.hourlyDrop = hourlyDrop;
+    this.dropsGui = dropsGui;
+    this.openedForPlayer = openedForPlayer;
+    this.hourlyDrop = hourlyDrop;
 
-		setOnGlobalClick(event -> event.setCancelled(true));
-		setOnGlobalDrag(event -> event.setCancelled(true));
+    setOnGlobalClick(event -> event.setCancelled(true));
+    setOnGlobalDrag(event -> event.setCancelled(true));
 
-		StaticPane staticPane = new StaticPane(0, 5, 9, 1);
-		staticPane.addItem(getBackItem(), 4, 0);
+    StaticPane staticPane = new StaticPane(0, 5, 9, 1);
+    staticPane.addItem(getBackItem(), 4, 0);
 
-		addPane(staticPane);
+    addPane(staticPane);
 
-		PaginatedPane paginatedPane = new PaginatedPane(1, 2, 7, 3);
+    PaginatedPane paginatedPane = new PaginatedPane(1, 2, 7, 3);
 
-		int page = 0;
-		int y = 0;
-		for (HourlyDropRecipe recipe : hourlyDrop.getRecipes()) {
-			paginatedPane.addPane(page, new DropRecipePane(openedForPlayer, this, recipe, y));
+    int page = 0;
+    int y = 0;
+    for (HourlyDropRecipe recipe : hourlyDrop.getRecipes()) {
+      paginatedPane.addPane(page, new DropRecipePane(openedForPlayer, this, recipe, y));
 
-			y++;
+      y++;
 
-			if (y == 3) {
-				page++;
-				y = 0;
-			}
-		}
+      if (y == 3) {
+        page++;
+        y = 0;
+      }
+    }
 
-		PagingButtons pagingButtons = new PagingButtons(Slot.fromXY(0, 3), 9, paginatedPane);
-		DropsGui.setBackItem(pagingButtons);
-		DropsGui.setForwardItem(pagingButtons);
+    PagingButtons pagingButtons = new PagingButtons(Slot.fromXY(0, 3), 9, paginatedPane);
+    DropsGui.setBackItem(pagingButtons);
+    DropsGui.setForwardItem(pagingButtons);
 
-		addPane(paginatedPane);
-		addPane(pagingButtons);
+    addPane(paginatedPane);
+    addPane(pagingButtons);
 
-		update();
-	}
+    update();
+  }
 
-	/**
-	 * Gets back item.
-	 *
-	 * @return the back item
-	 */
-	private GuiItem getBackItem() {
-		ItemStack itemStack = OraxenItems.getItemById("daily_reward_back").build();
-		ItemMeta itemMeta = itemStack.getItemMeta();
+  /**
+   * Gets back item.
+   *
+   * @return the back item
+   */
+  private GuiItem getBackItem() {
+    ItemStack itemStack = OraxenItems.getItemById("daily_reward_back").build();
+    ItemMeta itemMeta = itemStack.getItemMeta();
 
-		if (itemMeta != null) {
-			itemMeta.displayName(
-					Component.text("Zurück", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
-			itemStack.setItemMeta(itemMeta);
-		}
+    if (itemMeta != null) {
+      itemMeta.displayName(
+          Component.text("Zurück", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
+      itemStack.setItemMeta(itemMeta);
+    }
 
-		return new GuiItem(itemStack, event -> {
-			event.setCancelled(true);
+    return new GuiItem(itemStack, event -> {
+      event.setCancelled(true);
 
-			dropsGui.show(event.getWhoClicked());
-			dropsGui.update();
-		});
-	}
+      dropsGui.show(event.getWhoClicked());
+      dropsGui.update();
+    });
+  }
 }

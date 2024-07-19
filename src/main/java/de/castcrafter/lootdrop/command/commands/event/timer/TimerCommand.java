@@ -11,19 +11,19 @@ import dev.jorel.commandapi.CommandAPICommand;
  */
 public class TimerCommand extends CommandAPICommand {
 
-	/**
-	 * Instantiates a new Timer command.
-	 *
-	 * @param commandName the command name
-	 */
-	public TimerCommand(String commandName) {
-		super(commandName);
+  /**
+   * Instantiates a new Timer command.
+   *
+   * @param commandName the command name
+   */
+  public TimerCommand(String commandName) {
+    super(commandName);
 
-		withPermission("lootdrop.command.timer");
+    withPermission("lootdrop.command.timer");
 
-		withSubcommand(new TimerStartCommand("start"));
-		withSubcommand(new TimerEndCommand("end"));
-		withSubcommand(new TimerCreateCommand("create"));
-		withSubcommand(new TimerCancelCommand("cancel"));
-	}
+    withSubcommand(new TimerStartCommand("start"));
+    withSubcommand(new TimerEndCommand("end"));
+    withSubcommand(new TimerCreateCommand("create"));
+    withSubcommand(new TimerCancelCommand("cancel"));
+  }
 }
