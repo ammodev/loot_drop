@@ -52,7 +52,7 @@ public class Duel {
 
     this.rewards = rewards.stream().map(ItemStack::clone).toList();
 
-    this.voteTimer = new DuelVoteTimer(this, voteDuration);
+    this.voteTimer = new DuelVoteTimer(this, voteDuration, DuelVotesDisplay.INSTANCE);
     this.voteTimer.start();
   }
 

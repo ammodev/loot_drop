@@ -2,6 +2,7 @@ package de.castcrafter.lootdrop.duel;
 
 import de.castcrafter.lootdrop.BukkitMain;
 import de.castcrafter.lootdrop.utils.SoundUtils;
+import java.util.List;
 import kr.toxicity.hud.api.BetterHud;
 import kr.toxicity.hud.api.hud.Hud;
 import kr.toxicity.hud.api.player.HudPlayer;
@@ -25,6 +26,7 @@ public class DuelVoteTimer extends BukkitRunnable implements Listener {
   private final Duel duel;
   private final int maxSeconds;
   private int currentSeconds;
+  private final List<SubTimer> subTimers;
 
   /**
    * Instantiates a new Duel vote timer.
@@ -32,11 +34,13 @@ public class DuelVoteTimer extends BukkitRunnable implements Listener {
    * @param duel       the duel
    * @param maxSeconds the max seconds
    */
-  public DuelVoteTimer(Duel duel, int maxSeconds) {
+  public DuelVoteTimer(Duel duel, int maxSeconds, SubTimer... subTimers) {
     this.duel = duel;
 
     this.currentSeconds = maxSeconds + 1;
     this.maxSeconds = maxSeconds;
+
+    this.subTimers = List.of(subTimers);
 
     Bukkit.getPluginManager().registerEvents(this, BukkitMain.getInstance());
   }
@@ -55,6 +59,7 @@ public class DuelVoteTimer extends BukkitRunnable implements Listener {
     currentSeconds--;
 
     plingSound();
+    subTimers.forEach(subTimer -> subTimer.run(duel, currentSeconds));
 
     if (currentSeconds <= 0) {
       duel.endVote();
@@ -143,5 +148,10 @@ public class DuelVoteTimer extends BukkitRunnable implements Listener {
    */
   public int getMaxSeconds() {
     return maxSeconds;
+  }
+
+  public interface SubTimer {
+
+    void run(Duel duel, int currentSeconds);
   }
 }
